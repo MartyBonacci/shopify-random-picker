@@ -8,8 +8,9 @@ function randomize() {
     data.data.forEach((transaction) => {
             for (let i = 1; i <= transaction["Lineitem quantity"]; i++) {
                 tickets.push({
+                    name: transaction.Name,
                     email: transaction.Email,
-                    name: transaction["Billing Name"],
+                    billingName: transaction["Billing Name"],
                     address1: transaction["Billing Address1"],
                     address2: transaction["Billing Address2"],
                     city: transaction["Billing City"],
@@ -23,14 +24,17 @@ function randomize() {
     )
 
     // console.log(tickets);
-    let randomNumber = Math.floor(Math.random() * tickets.length)
+    let numberOfTickersPurchased = tickets.length
+    // console.log(numberOfTickersPurchased)
+    let randomNumber = Math.floor(Math.random() * numberOfTickersPurchased)
     console.log(randomNumber);
     let winner = tickets[randomNumber]
-    // console.log(winner);
+    console.log(winner);
     let winnerDiv = document.getElementById("winner")
     winnerDiv.innerHTML = `
     <h2>Winner</h2>
     <p><strong>Name:</strong> ${winner.name}</p>
+    <p><strong>Billing Name:</strong> ${winner.billingName}</p>
     <p><strong>Email:</strong> ${winner.email}</p>
     <p><strong>Address:</strong> ${winner.address1} ${winner.address2}</p>
     <p><strong>City:</strong> ${winner.city}</p>
